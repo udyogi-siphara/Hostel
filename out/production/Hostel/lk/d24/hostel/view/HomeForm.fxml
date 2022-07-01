@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="746.0" prefWidth="1392.0" style="-fx-background-color: #eeeae2;" stylesheets="@assests/style/HomeStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.d24.hostel.controller.HomeFormController">
+   <children>
+      <AnchorPane fx:id="icnSideAnchorPane" layoutY="40.0" onMouseEntered="#iconSideOnAction" prefHeight="709.0" prefWidth="43.0" style="-fx-background-color: #e1e1e1;">
+         <children>
+            <ImageView id="DashBoardImage" fitHeight="30.0" fitWidth="30.0" layoutX="7.0" layoutY="32.0" onMouseClicked="#buttonsClickOnAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../ParaSuperMarket/src/lk/para/superMarket/view/assets/image/menu.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="7.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assests/images/room.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="6.0" layoutY="170.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assests/images/stAdd.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="8.0" layoutY="279.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assests/images/resDetail.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="6.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assests/images/users.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="5.0" layoutY="577.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assests/images/logout.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-1.0" prefHeight="38.0" prefWidth="1394.0" style="-fx-background-color: #e1e1e1;">
+         <children>
+            <Label layoutX="1214.0" layoutY="10.0" text="Time :" textFill="#26059d">
+               <font>
+                  <Font name="Futura Black BT" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="1042.0" layoutY="10.0" text="Date:" textFill="#26059d">
+               <font>
+                  <Font name="Futura Black BT" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblDate" layoutX="1089.0" layoutY="11.0" text="2022-05-22">
+               <font>
+                  <Font name="Futura Black BT" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTime" layoutX="1269.0" layoutY="11.0" text="02:53:45">
+               <font>
+                  <Font name="Futura Black BT" size="13.0" />
+               </font>
+            </Label>
+            <Text fill="#26059d" layoutX="14.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D24 Hostel">
+               <font>
+                  <Font name="Futura Black BT" size="17.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Line endX="1292.0" endY="-7.62939453125E-6" layoutX="99.0" layoutY="38.0" startX="-100.0" stroke="#26059d" strokeWidth="3.0" />
+      <AnchorPane fx:id="apnMainPain" layoutX="42.0" layoutY="40.0" prefHeight="709.0" prefWidth="1352.0" style="-fx-background-color: #eeeae2;" />
+      <AnchorPane fx:id="NameSideAnchorPane" layoutX="42.0" layoutY="40.0" onMouseExited="#NameSideOnAction" prefHeight="709.0" prefWidth="170.0" style="-fx-background-color: #e1e1e1;">
+         <children>
+            <JFXButton id="StudentButton" layoutX="1.0" layoutY="218.0" onMouseClicked="#buttonsClickOnAction" prefHeight="55.0" prefWidth="168.0" styleClass="menuItem" text="Manage Students">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton id="LogoutButton" layoutY="565.0" onMouseClicked="#buttonsClickOnAction" prefHeight="55.0" prefWidth="170.0" styleClass="menuItem" text="Log out">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton id="ReservationButton" layoutX="1.0" layoutY="269.0" onMouseClicked="#buttonsClickOnAction" prefHeight="55.0" prefWidth="168.0" styleClass="menuItem" text="Reservation Details">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton id="RoomButton" layoutX="1.0" layoutY="112.0" onMouseClicked="#buttonsClickOnAction" prefHeight="55.0" prefWidth="168.0" styleClass="menuItem" text="Mange Rooms">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton id="RegisterStudentButton" layoutX="1.0" layoutY="164.0" onMouseClicked="#buttonsClickOnAction" prefHeight="55.0" prefWidth="168.0" styleClass="menuItem" text="Register Student">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
