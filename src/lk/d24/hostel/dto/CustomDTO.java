@@ -2,7 +2,7 @@
  * @author : Udyogi Siphara
  * Project Name: Hostel
  * Date        : 7/1/2022
- * Time        : 1:11 PM
+ * Time        : 1:18 PM
  */
 
 package lk.d24.hostel.dto;
@@ -25,13 +25,11 @@ public class CustomDTO {
     String telNo;
     LocalDate dob;
     String gender;
-
     String resId;
     LocalDate date;
     Student regStudentId;
     Room regRoomId;
     String status;
-
     private String roomTypeId;
     private String type;
     private double keyMoney;

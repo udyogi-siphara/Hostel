@@ -2,7 +2,7 @@
  * @author : Udyogi Siphara
  * Project Name: Hostel
  * Date        : 7/1/2022
- * Time        : 1:10 PM
+ * Time        : 1:18 PM
  */
 
 package lk.d24.hostel.entity;
