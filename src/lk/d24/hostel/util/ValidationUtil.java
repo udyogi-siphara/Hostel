@@ -45,7 +45,7 @@ public class ValidationUtil {
                 }
                 return textFieldKey;
             }
-            textFieldKey.setStyle("-fx-text-fill: green");
+            textFieldKey.setStyle("-fx-text-fill: blue");
         }
         btn.setDisable(false);
         return true;
@@ -62,7 +62,7 @@ public class ValidationUtil {
                 }
                 return passwordFieldKey;
             }
-            passwordFieldKey.setStyle("-fx-text-fill: green");
+            passwordFieldKey.setStyle("-fx-text-fill: blue");
         }
         btn.setDisable(false);
         return true;
