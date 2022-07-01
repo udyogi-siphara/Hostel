@@ -25,11 +25,13 @@ public class CustomDTO {
     String telNo;
     LocalDate dob;
     String gender;
+
     String resId;
     LocalDate date;
     Student regStudentId;
     Room regRoomId;
     String status;
+
     private String roomTypeId;
     private String type;
     private double keyMoney;

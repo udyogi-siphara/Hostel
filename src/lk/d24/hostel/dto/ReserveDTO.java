@@ -25,4 +25,6 @@ public class ReserveDTO {
     Student studentId;
     Room roomId;
     String status;
+
+
 }
