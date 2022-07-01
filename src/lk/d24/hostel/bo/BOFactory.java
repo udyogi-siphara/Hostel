@@ -8,6 +8,7 @@
 package lk.d24.hostel.bo;
 
 import lk.d24.hostel.bo.custom.impl.ReservationBOImpl;
+import lk.d24.hostel.bo.custom.impl.ReserveDetailBOImpl;
 import lk.d24.hostel.bo.custom.impl.RoomBoImpl;
 import lk.d24.hostel.bo.custom.impl.StudentBoImpl;
 
@@ -25,7 +26,7 @@ public class BOFactory {
     }
 
     public enum BOTypes {
-    ROOM,STUDENT,RESERVATION
+    ROOM,STUDENT,RESERVATION,RESERVATION_DETAIL
     }
     public SuperBO getBO(BOTypes types) {
         switch (types) {
@@ -35,6 +36,8 @@ public class BOFactory {
                 return new StudentBoImpl();
             case RESERVATION:
                 return new ReservationBOImpl();
+            case RESERVATION_DETAIL:
+                return new ReserveDetailBOImpl();
             default:
                 return null;
         }
