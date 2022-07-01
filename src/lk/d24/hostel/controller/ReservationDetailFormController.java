@@ -25,6 +25,8 @@ import lk.d24.hostel.bo.custom.ReserveDetailBO;
 import lk.d24.hostel.bo.custom.RoomBO;
 import lk.d24.hostel.bo.custom.impl.ReserveDetailBOImpl;
 import lk.d24.hostel.dto.CustomDTO;
+import lk.d24.hostel.dto.RoomDTO;
+import lk.d24.hostel.dto.StudentDTO;
 import lk.d24.hostel.view.tdm.ReserveDetailTM;
 
 import java.io.IOException;
@@ -65,6 +67,8 @@ public class ReservationDetailFormController {
         tblReserve.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("status"));
         tblReserve.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("remainKeyMoney"));
 
+        loadCmbData();
+
         numCheckBoxSelected.addListener((obs, oldSelectedCount, newSelectedCount) -> {
             if (newSelectedCount.intValue() >= maxNumSelected){
                 unSelectedCheckBox.forEach(cb -> cb.setDisable(true));
@@ -83,11 +87,33 @@ public class ReservationDetailFormController {
             }
         });
 
+        configureCheckBox(checkPaid);
+        configureCheckBox(checkNonPaid);
+        configureCheckBox(checkOtherPayment);
+
         txtReserveID.setDisable(true);
         cmbUpdateSelectStudent.setDisable(true);
         cmbUpdateSelectRoom.setDisable(true);
         txtUpdateStatus.setDisable(true);
 
+    }
+
+    private void configureCheckBox(JFXCheckBox checkBox) {
+        if (checkBox.isSelected()){
+            selectedCheckBox.add(checkBox);
+        }else{
+            unSelectedCheckBox.add(checkBox);
+        }
+
+        checkBox.selectedProperty().addListener((obs, wasSelected, isNowSelected) -> {
+            if (isNowSelected){
+                unSelectedCheckBox.remove(checkBox);
+                selectedCheckBox.add(checkBox);
+            }else{
+                unSelectedCheckBox.remove(checkBox);
+                selectedCheckBox.add(checkBox);
+            }
+        });
     }
 
     private void loadAllReservation() throws IOException {
@@ -121,6 +147,18 @@ public class ReservationDetailFormController {
 
         }
 
+    }
+
+    private void loadCmbData() throws IOException {
+        for (RoomDTO roomDTO : reserveDetailBO.getAllRoom()) {
+            cmbUpdateSelectRoom.getItems().add(roomDTO.getRoomTypeId());
+            cmbSearchRoomId.getItems().add(roomDTO.getRoomTypeId());
+            cmbRoomType.getItems().add(roomDTO.getType());
+        }
+
+        for (StudentDTO dto : reserveDetailBO.getAllStudent()) {
+            cmbUpdateSelectRoom.getItems().add(dto.getStudentId());
+        }
     }
 
     public void textFieldValidationOnAction(KeyEvent keyEvent) {
