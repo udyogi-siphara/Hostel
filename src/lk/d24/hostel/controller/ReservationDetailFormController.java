@@ -15,7 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyEvent;
 
-public class RegisterDetailFormController {
+public class ReservationDetailFormController {
 
     public JFXTextField txtUpdateStatus;
     public JFXComboBox cmbUpdateSelectStudent;
@@ -42,5 +42,8 @@ public class RegisterDetailFormController {
     }
 
     public void RoomClearOnAction(ActionEvent actionEvent) {
+    }
+
+    public void clearSearchOnAction(ActionEvent actionEvent) {
     }
 }
