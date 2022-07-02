@@ -15,6 +15,7 @@ import lk.d24.hostel.bo.custom.impl.StudentBoImpl;
 import lk.d24.hostel.dao.custom.impl.ReservationDAOImpl;
 import lk.d24.hostel.dao.custom.impl.RoomDAOImpl;
 import lk.d24.hostel.dao.custom.impl.StudentDAOImpl;
+import lk.d24.hostel.dao.custom.impl.UserDAOImpl;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -31,7 +32,7 @@ public class DAOFactory {
     }
 
     public enum DAOTypes {
-        ROOM,STUDENT,RESERVATION
+        ROOM,STUDENT,RESERVATION,USER
     }
     public SuperDAO getDAO(DAOFactory.DAOTypes types) {
         switch (types) {
@@ -41,6 +42,8 @@ public class DAOFactory {
                 return new StudentDAOImpl();
             case RESERVATION:
                 return new ReservationDAOImpl();
+            case USER:
+                return new UserDAOImpl();
             default:
                 return null;
         }

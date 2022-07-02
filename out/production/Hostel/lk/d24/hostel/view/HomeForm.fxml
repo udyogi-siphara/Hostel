@@ -105,5 +105,15 @@
             </JFXButton>
          </children>
       </AnchorPane>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="642.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assests/images/userud.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblUserType" layoutX="680.0" layoutY="11.0" text="Admin" textFill="#26059d">
+         <font>
+            <Font name="Futura Black BT" size="13.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

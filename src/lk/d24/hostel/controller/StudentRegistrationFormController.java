@@ -144,7 +144,7 @@ public class StudentRegistrationFormController {
             lblRemainingRooms.setText("00");
         }else{
         new Alert(Alert.AlertType.WARNING,"You Can't Register Student for This Room").show();
-    }
+        }
     }
 
     public void ClearOnAction(ActionEvent actionEvent) {
