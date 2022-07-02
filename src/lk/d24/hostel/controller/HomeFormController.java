@@ -34,6 +34,7 @@ public class HomeFormController {
     public JFXButton btnReservationDetails;
     public JFXButton btnLogOut;
     public AnchorPane apnMainPain;
+    public Label lblUserType;
 
     public void initialize(){
         loadDateAndTime();
@@ -90,6 +91,12 @@ public class HomeFormController {
         );
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
+    }
+
+    String userName;
+    public void getAllData(String text) {
+        userName=text;
+        lblUserType.setText(userName);
     }
 
 }

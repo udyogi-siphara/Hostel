@@ -12,11 +12,17 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import lk.d24.hostel.util.ValidationUtil;
 
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.regex.Pattern;
 
@@ -27,6 +33,7 @@ public class LoginFormController {
     public JFXTextField txtPassword;
     public FontAwesomeIconView icnEye;
     public JFXButton btnLogin;
+    public AnchorPane apnMain;
 
     LinkedHashMap<JFXTextField, Pattern> map = new LinkedHashMap<>();
     Pattern usernamePattern = Pattern.compile("^[A-z0-9]{3,10}$");
@@ -43,6 +50,23 @@ public class LoginFormController {
     }
 
     public void btnLoginOnAction(ActionEvent actionEvent) {
+    }
+
+    public void lordWindow() throws IOException {
+
+        Stage stage = (Stage) apnMain.getScene().getWindow();
+        FXMLLoader loader1 = new FXMLLoader(getClass().getResource("/lk/d24/hostel/view/HomeForm.fxml"));
+
+        Parent root1 = loader1.load();
+        Scene scene1 = new Scene(root1);
+
+        stage.setScene(scene1);
+
+        HomeFormController controller = loader1.getController();
+        controller.getAllData(txtUserName.getText());
+
+        stage.centerOnScreen();
+
     }
 
     public void textFieldValidationOnAction(KeyEvent keyEvent) {
