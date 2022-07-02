@@ -14,8 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="709.0" prefWidth="1352.0" style="-fx-background-color: #eeeae2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.d24.hostel.controller.RegisterDetailFormController">
+<AnchorPane prefHeight="709.0" prefWidth="1352.0" style="-fx-background-color: #eeeae2;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.d24.hostel.controller.ReservationDetailFormController">
    <children>
       <AnchorPane layoutX="19.0" layoutY="19.0" prefHeight="660.0" prefWidth="297.0" style="-fx-background-color: #ffffff;" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="57.0" layoutX="37.0" layoutY="297.0" stroke="#5224f8" strokeType="OUTSIDE" strokeWidth="2.0" width="261.0" />
@@ -52,7 +51,14 @@
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="335.0" layoutY="15.0" prefHeight="249.0" prefWidth="984.0" style="-fx-background-color: #ffffff;" />
+      <AnchorPane layoutX="335.0" layoutY="15.0" prefHeight="249.0" prefWidth="984.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <JFXButton id="cusButtonText" layoutX="769.0" layoutY="184.0" onAction="#clearSearchOnAction" prefHeight="39.0" prefWidth="131.0" ripplerFill="#39c2ae" style="-fx-background-color: #f91b1b;" text="Clear ">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </JFXButton>
+         </children></AnchorPane>
       <JFXComboBox fx:id="cmbSearchRoomId" layoutX="657.0" layoutY="105.0" prefHeight="31.0" prefWidth="333.0" promptText="   Select Room Id" />
       <Label layoutX="1023.0" layoutY="56.0" text="Room Type">
          <font>
@@ -67,9 +73,9 @@
             <Font name="Bodoni MT" size="19.0" />
          </font>
       </Label>
-      <JFXCheckBox fx:id="checkPaid" checkedColor="#5224f8" layoutX="857.0" layoutY="208.0" text=" Paid" />
-      <JFXCheckBox fx:id="checkNonPaid" checkedColor="#5224f8" layoutX="993.0" layoutY="208.0" text="Non-Paid" />
-      <JFXCheckBox fx:id="checkOtherPayment" checkedColor="#5224f8" layoutX="1149.0" layoutY="208.0" text="Other Payment" />
+      <JFXCheckBox fx:id="checkPaid" checkedColor="#5224f8" layoutX="653.0" layoutY="208.0" text=" Paid" />
+      <JFXCheckBox fx:id="checkNonPaid" checkedColor="#5224f8" layoutX="789.0" layoutY="208.0" text="Non-Paid" />
+      <JFXCheckBox fx:id="checkOtherPayment" checkedColor="#5224f8" layoutX="945.0" layoutY="208.0" text="Other Payment" />
       <TableView id="effect" fx:id="tblReserve" layoutX="539.0" layoutY="352.0" prefHeight="303.0" prefWidth="744.0">
          <columns>
             <TableColumn prefWidth="108.0" text="Resreve Id" />

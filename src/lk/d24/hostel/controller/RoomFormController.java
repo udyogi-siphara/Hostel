@@ -18,14 +18,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Rectangle;
 import lk.d24.hostel.bo.BOFactory;
-import lk.d24.hostel.bo.custom.ReservationBO;
 import lk.d24.hostel.bo.custom.RoomBO;
-import lk.d24.hostel.bo.custom.impl.RoomBoImpl;
 import lk.d24.hostel.dto.RoomDTO;
-import lk.d24.hostel.dto.StudentDTO;
 import lk.d24.hostel.entity.Room;
 import lk.d24.hostel.view.tdm.RoomTM;
-import lk.d24.hostel.view.tdm.StudentTM;
+
 
 import java.io.IOException;
 

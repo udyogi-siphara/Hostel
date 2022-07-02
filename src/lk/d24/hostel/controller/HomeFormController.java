@@ -65,7 +65,7 @@ public class HomeFormController {
                 setUI("StudentForm");
 
             }if(button.getId().equals("ReservationButton")){
-                setUI("RegisterDetailForm");
+                setUI("ReservationDetailForm");
 
             }if(button.getId().equals("LogoutButton")){
                 setUI("LoginForm");

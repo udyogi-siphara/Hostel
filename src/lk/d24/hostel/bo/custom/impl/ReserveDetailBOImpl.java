@@ -35,10 +35,11 @@ public class ReserveDetailBOImpl implements ReserveDetailBO {
     public ArrayList<CustomDTO> getAllReservationDetails() throws IOException {
         ArrayList<Reserve> all = reservationDAO.getAll();
 
-        ArrayList<CustomDTO> allList = new ArrayList<>();
+        ArrayList<CustomDTO>arrayList=new ArrayList<>();
+
 
         for (Reserve res : all) {
-            allList.add(new CustomDTO(
+            arrayList.add(new CustomDTO(
                     res.getStudent().getStudentId(),
                     res.getStudent().getName(),
                     res.getStudent().getAddress(),
@@ -54,10 +55,13 @@ public class ReserveDetailBOImpl implements ReserveDetailBO {
                     res.getRoom().getType(),
                     res.getRoom().getKeyMoney(),
                     res.getRoom().getQty()
-
             ));
+
+
         }
-        return allList;
+
+        return arrayList;
+
     }
 
     @Override

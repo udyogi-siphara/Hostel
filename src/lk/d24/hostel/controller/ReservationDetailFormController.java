@@ -17,6 +17,7 @@ import javafx.beans.binding.IntegerBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
@@ -28,6 +29,8 @@ import lk.d24.hostel.dto.CustomDTO;
 import lk.d24.hostel.dto.ReserveDTO;
 import lk.d24.hostel.dto.RoomDTO;
 import lk.d24.hostel.dto.StudentDTO;
+import lk.d24.hostel.entity.Room;
+import lk.d24.hostel.entity.Student;
 import lk.d24.hostel.view.tdm.ReserveDetailTM;
 
 import java.io.IOException;
@@ -71,6 +74,7 @@ public class ReservationDetailFormController {
 
         loadCmbData();
         loadSearchReserve();
+        addCheckBoxListener();
 
         numCheckBoxSelected.addListener((obs, oldSelectedCount, newSelectedCount) -> {
             if (newSelectedCount.intValue() >= maxNumSelected){
@@ -230,17 +234,276 @@ public class ReservationDetailFormController {
         });
     }
 
+    private void addCheckBoxListener(){
+        checkPaid.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue!=null){
+                if (cmbSearchRoomId.getSelectionModel().isEmpty()){
+                    try {
+                        ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
+                        tblReserve.getItems().clear();
+
+                        for (CustomDTO all : allReservationDetails) {
+
+                            if (all.getStatus().equalsIgnoreCase("Paid")){
+                                String remain = "";
+                                String status = all.getStatus();
+
+                                if (status.equalsIgnoreCase("Paid")){
+                                    remain = "---";
+                                }else if (status.equalsIgnoreCase("Non-Paid")){
+                                    remain = String.valueOf(all.getKeyMoney());
+                                }else{
+                                    if (!status.equals("")){
+                                        double paid = Double.parseDouble(status);
+                                        remain = String.valueOf(all.getKeyMoney() - paid);
+                                    }
+                                }
+
+                                tblReserve.getItems().add(new ReserveDetailTM(
+                                        all.getResId(),
+                                        all.getDate(),
+                                        all.getStudentId(),
+                                        all.getRoomTypeId(),
+                                        all.getStatus(),
+                                        remain
+                                ));
+
+                            }
+                        }
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    try {
+                        ArrayList<CustomDTO> allResevervationDetails = reserveDetailBO.getAllReservationDetails();
+
+                        tblReserve.getItems().clear();
+
+                        for (CustomDTO all : allResevervationDetails) {
+                            if (all.getStatus().equalsIgnoreCase("Paid") && all.getRegRoomId().getRoomTypeId().equals(cmbSearchRoomId.getValue())){
+                                String remain = "";
+                                String status = all.getStatus();
+
+                                if (status.equalsIgnoreCase("Paid")){
+                                    remain = "---";
+                                }else if(status.equalsIgnoreCase("Non-Paid")){
+                                    remain = String.valueOf(all.getKeyMoney());
+                                }else{
+                                    if (!status.equals("")){
+                                        double paid = Double.parseDouble(status);
+                                        remain = String.valueOf(all.getKeyMoney()-paid);
+                                    }
+                                }
+
+                                tblReserve.getItems().add(new ReserveDetailTM(
+                                        all.getResId(),
+                                        all.getDate(),
+                                        all.getStudentId(),
+                                        all.getRoomTypeId(),
+                                        all.getStatus(),
+                                        remain
+                                ));
+                            }
+                        }
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        checkNonPaid.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue !=null){
+                if (cmbSearchRoomId.getSelectionModel().isEmpty()){
+                    try {
+                        ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
+                        tblReserve.getItems().clear();
+                        for (CustomDTO all : allReservationDetails) {
+                            if (all.getStatus().equalsIgnoreCase("Non-Paid")){
+                                String remain = "---";
+                                String status = all.getStatus();
+
+                                if (status.equalsIgnoreCase("Paid")){
+                                    remain = "---";
+                                }else if (status.equalsIgnoreCase("Non-Paid")){
+                                    remain = String.valueOf(all.getKeyMoney());
+                                }else{
+                                    if (!status.equals("")){
+                                        double paid = Double.parseDouble(status);
+                                        remain=String.valueOf(all.getKeyMoney()-paid);
+                                    }
+                                }
+                                tblReserve.getItems().add(new ReserveDetailTM(
+                                        all.getResId(),
+                                        all.getDate(),
+                                        all.getStudentId(),
+                                        all.getRoomTypeId(),
+                                        all.getStatus(),
+                                        remain
+                                ));
+                            }
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }else{
+                    try {
+                        ArrayList<CustomDTO> allResevervationDetails = reserveDetailBO.getAllReservationDetails();
+                        tblReserve.getItems().clear();
+
+                        for (CustomDTO all : allResevervationDetails) {
+                            if (all.getStatus().equalsIgnoreCase("Non-Paid")&& all.getRegRoomId().getRoomTypeId().equals(cmbSearchRoomId.getValue())){
+                                String remain = "";
+                                String status = all.getStatus();
+
+                                if (status.equalsIgnoreCase("Paid")){
+                                    remain = "---";
+                                }else if(status.equalsIgnoreCase("Non-Paid")){
+                                    remain = String.valueOf(all.getKeyMoney());
+                                }else {
+                                    if (!status.equals("")){
+                                        double paid = Double.parseDouble(status);
+                                        remain = String.valueOf(all.getKeyMoney()-paid);
+                                    }
+                                }
+                                tblReserve.getItems().add(new ReserveDetailTM(
+                                        all.getResId(),
+                                        all.getDate(),
+                                        all.getStudentId(),
+                                        all.getRoomTypeId(),
+                                        all.getStatus(),
+                                        remain
+                                ));
+                            }
+
+                        }
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        checkOtherPayment.selectedProperty().addListener((observable, oldValue, newValue) -> {
+           if (newValue!=null){
+               if (cmbSearchRoomId.getSelectionModel().isEmpty()){
+                   try {
+                       ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
+                       tblReserve.getItems().clear();
+
+                       for (CustomDTO all : allReservationDetails) {
+                           if (!all.getStatus().equalsIgnoreCase("Paid") && !all.getStatus().equalsIgnoreCase("Non-Paid")){
+                                String remain = "";
+                                String status = all.getStatus();
+
+                                if (status.equalsIgnoreCase("Paid")){
+                                    remain = "";
+                                }else if (status.equalsIgnoreCase("Non-Paid")){
+                                    remain = String.valueOf(all.getKeyMoney());
+                                }else {
+                                    if (!status.equals("")) {
+                                        double paid = Double.parseDouble(status);
+                                        remain = String.valueOf(all.getKeyMoney()-paid);
+                                    }
+                                }
+                               tblReserve.getItems().add(new ReserveDetailTM(
+                                       all.getResId(),
+                                       all.getDate(),
+                                       all.getStudentId(),
+                                       all.getRoomTypeId(),
+                                       all.getStatus(),
+                                       remain
+                               ));
+                           }
+                       }
+
+                   } catch (IOException e) {
+                       e.printStackTrace();
+                   }
+               }else{
+                   try {
+                       ArrayList<CustomDTO> allReservationDetails = reserveDetailBO.getAllReservationDetails();
+                       tblReserve.getItems().clear();
+
+                       for (CustomDTO all : allReservationDetails) {
+                           if (!all.getStatus().equalsIgnoreCase("Paid") && !all.getStatus().equalsIgnoreCase("Non-Paid")){
+                               String remain = "";
+                               String status = all.getStatus();
+
+                               if (status.equalsIgnoreCase("paid")){
+                                   remain = "---";
+                               }else if (status.equalsIgnoreCase("Non-Paid")){
+                                   remain = String.valueOf(all.getKeyMoney());
+                               }else{
+                                   if (!status.equals("")) {
+                                       double paid = Double.parseDouble(status);
+                                       remain = String.valueOf(all.getKeyMoney() - paid);
+                                   }
+                               }
+                               tblReserve.getItems().add(new ReserveDetailTM(
+                                       all.getResId(),
+                                       all.getDate(),
+                                       all.getStudentId(),
+                                       all.getRoomTypeId(),
+                                       all.getStatus(),
+                                       remain
+                               ));
+                           }
+                       }
+
+                   } catch (IOException e) {
+                       e.printStackTrace();
+                   }
+               }
+           }
+        });
+    }
+
     public void menuDeleteOnAction(ActionEvent actionEvent) {
 
     }
 
-    public void btnReserveUpdateOnAction(ActionEvent actionEvent) {
+    public void btnReserveUpdateOnAction(ActionEvent actionEvent) throws IOException {
+        txtReserveID.setDisable(true);
+        cmbUpdateSelectStudent.setDisable(true);
+        cmbUpdateSelectRoom.setDisable(true);
+        txtUpdateStatus.setDisable(true);
 
+        Student student = new Student();
+        student.setStudentId(cmbUpdateSelectStudent.getValue());
+
+        Room room = new Room();
+        room.setRoomTypeId(cmbUpdateSelectRoom.getValue());
+
+        boolean b = reserveDetailBO.updateReservation(new ReserveDTO(
+                txtReserveID.getText(),
+                date,
+                student,
+                room,
+                txtUpdateStatus.getText()));
+
+        if (b) {
+            new Alert(Alert.AlertType.INFORMATION, "Reservation Updated!!").show();
+            loadAllReservation();
+        } else {
+            new Alert(Alert.AlertType.INFORMATION, "Something Went Wrong").show();
+
+        }
     }
 
     public void RoomClearOnAction(ActionEvent actionEvent) {
     }
 
-    public void clearSearchOnAction(ActionEvent actionEvent) {
+    public void clearSearchOnAction(ActionEvent actionEvent) throws IOException {
+        loadAllReservation();
+        cmbSearchRoomId.setValue(null);
+        cmbRoomType.setValue(null);
+
+        checkPaid.selectedProperty().setValue(false);
+        checkNonPaid.selectedProperty().setValue(false);
+        checkOtherPayment.selectedProperty().setValue(false);
     }
 }
