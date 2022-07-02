@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,7 +18,7 @@
          <children>
             <ImageView id="DashBoardImage" fitHeight="30.0" fitWidth="30.0" layoutX="7.0" layoutY="32.0" onMouseClicked="#buttonsClickOnAction" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../ParaSuperMarket/src/lk/para/superMarket/view/assets/image/menu.png" />
+                  <Image url="@assests/images/menu.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="7.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
@@ -72,10 +75,15 @@
                   <Font name="Futura Black BT" size="17.0" />
                </font>
             </Text>
+            <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="722.0" layoutY="7.0" onMouseClicked="#upDownClickOnAction" pickOnBounds="true">
+               <image>
+                  <Image url="@assests/images/downPoint.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <Line endX="1292.0" endY="-7.62939453125E-6" layoutX="99.0" layoutY="38.0" startX="-100.0" stroke="#26059d" strokeWidth="3.0" />
-      <AnchorPane fx:id="apnMainPain" layoutX="42.0" layoutY="40.0" prefHeight="709.0" prefWidth="1352.0" style="-fx-background-color: #eeeae2;" />
+      <AnchorPane fx:id="apnMainPain" layoutX="42.0" layoutY="40.0" onMouseClicked="#downPaneCloseOnAction" prefHeight="709.0" prefWidth="1352.0" style="-fx-background-color: #eeeae2;" />
       <AnchorPane fx:id="NameSideAnchorPane" layoutX="42.0" layoutY="40.0" onMouseExited="#NameSideOnAction" prefHeight="709.0" prefWidth="170.0" style="-fx-background-color: #e1e1e1;">
          <children>
             <JFXButton id="StudentButton" layoutX="1.0" layoutY="218.0" onMouseClicked="#buttonsClickOnAction" prefHeight="55.0" prefWidth="168.0" styleClass="menuItem" text="Manage Students">
@@ -115,5 +123,31 @@
             <Font name="Futura Black BT" size="13.0" />
          </font>
       </Label>
+      <AnchorPane fx:id="txtDownPane" layoutX="550.0" layoutY="38.0" prefHeight="475.0" prefWidth="355.0" style="-fx-background-color: #93b89d;">
+         <children>
+            <JFXTextField fx:id="txtUserName" focusColor="#2f1515" labelFloat="true" layoutX="72.0" layoutY="69.0" prefHeight="31.0" prefWidth="249.0" promptText="Username" unFocusColor="#4059a9" />
+            <JFXPasswordField fx:id="pwdPassword" labelFloat="true" layoutX="60.0" layoutY="311.0" prefHeight="31.0" prefWidth="240.0" promptText="Password" />
+            <FontAwesomeIconView fx:id="icnEye" glyphName="EYE_SLASH" layoutY="111.0" onMouseClicked="#eyeClickOnAction" size="26" x="310.0" y="225.0" />
+            <JFXTextField fx:id="txtPassword" labelFloat="true" layoutX="60.0" layoutY="311.0" prefHeight="31.0" prefWidth="240.0" promptText="Password" unFocusColor="#152246" />
+            <ImageView fitHeight="36.0" fitWidth="69.0" layoutX="26.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../HM/src/lk/D24/HostelManagement/view/assests/images/userMale.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="20.0" layoutY="311.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assests/images/password.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btnUpdate" layoutX="115.0" layoutY="401.0" onAction="#btnUpdateOnAction" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: #26059d; -fx-text-fill: #ffffff;" text="U P D A T E " textFill="WHITE" />
+            <JFXTextField fx:id="txtOldPassword" focusColor="BLACK" labelFloat="true" layoutX="71.0" layoutY="151.0" prefHeight="31.0" prefWidth="249.0" promptText="old Password" unFocusColor="#4059a9" />
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="26.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assests/images/password.png" />
+               </image>
+            </ImageView>
+            <JFXButton layoutX="110.0" layoutY="220.0" onAction="#btnSearchOnAction" prefHeight="36.0" prefWidth="141.0" style="-fx-background-color: #26059d; -fx-text-fill: #ffffff;" text="S E A R C H " textFill="WHITE" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -15,14 +15,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.d24.hostel.bo.BOFactory;
+import lk.d24.hostel.bo.custom.RoomBO;
+import lk.d24.hostel.bo.custom.UserBO;
+import lk.d24.hostel.dto.UserDTO;
 import lk.d24.hostel.util.ValidationUtil;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.regex.Pattern;
 
@@ -35,12 +41,21 @@ public class LoginFormController {
     public JFXButton btnLogin;
     public AnchorPane apnMain;
 
+    private final UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
+
     LinkedHashMap<JFXTextField, Pattern> map = new LinkedHashMap<>();
     Pattern usernamePattern = Pattern.compile("^[A-z0-9]{3,10}$");
     LinkedHashMap<JFXPasswordField, Pattern> map1 = new LinkedHashMap<>();
     Pattern passwordPattern = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{6,}$");
 
     public void initialize(){
+        txtPassword.setVisible(false);
+
+        //copy values for passwordField
+        txtPassword.textProperty().addListener((observable, oldValue, newValue) -> {
+            pwdPassword.setText(newValue);
+        });
+
         storeValidation();
     }
     private void storeValidation() {
@@ -49,7 +64,17 @@ public class LoginFormController {
 
     }
 
-    public void btnLoginOnAction(ActionEvent actionEvent) {
+    public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
+        ArrayList<UserDTO> allUser = userBO.getAllUser();
+
+        for (UserDTO userDTO : allUser) {
+
+            if(userDTO.getUserName().equals(txtUserName.getText()) && userDTO.getPassword().equals(pwdPassword.getText())){
+                lordWindow();
+            }else{
+                new Alert(Alert.AlertType.ERROR,"Login Failed..").show();
+            }
+        }
     }
 
     public void lordWindow() throws IOException {
@@ -63,7 +88,7 @@ public class LoginFormController {
         stage.setScene(scene1);
 
         HomeFormController controller = loader1.getController();
-        controller.getAllData(txtUserName.getText());
+        controller.getAllData(txtUserName.getText(),pwdPassword.getText());
 
         stage.centerOnScreen();
 

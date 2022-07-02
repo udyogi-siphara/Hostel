@@ -42,7 +42,13 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean update(User entity) throws IOException {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction=session.beginTransaction();
+
+        session.update(entity);
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override

@@ -15,4 +15,6 @@ import java.util.ArrayList;
 
 public interface UserBO extends SuperBO {
     ArrayList<UserDTO> getAllUser() throws IOException;
+
+    boolean updateUser(UserDTO dto) throws IOException;
 }

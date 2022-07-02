@@ -13,7 +13,7 @@ public class AppInitializer extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("lk/d24/hostel/view/HomeForm.fxml"))));
+        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("lk/d24/hostel/view/LoginForm.fxml"))));
         primaryStage.setResizable(false);
         primaryStage.setTitle("D24 Hostel");
         primaryStage.centerOnScreen();

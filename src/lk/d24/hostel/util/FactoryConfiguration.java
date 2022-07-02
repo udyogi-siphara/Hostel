@@ -10,6 +10,7 @@ package lk.d24.hostel.util;
 import lk.d24.hostel.entity.Reserve;
 import lk.d24.hostel.entity.Room;
 import lk.d24.hostel.entity.Student;
+import lk.d24.hostel.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -32,6 +33,7 @@ public class FactoryConfiguration {
         configuration.addAnnotatedClass(Reserve.class);
         configuration.addAnnotatedClass(Student.class);
         configuration.addAnnotatedClass(Room.class);
+        configuration.addAnnotatedClass(User.class);
 
         sessionFactory = configuration.buildSessionFactory();
 

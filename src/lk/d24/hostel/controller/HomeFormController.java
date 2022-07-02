@@ -8,14 +8,21 @@
 package lk.d24.hostel.controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import lk.d24.hostel.bo.BOFactory;
+import lk.d24.hostel.bo.custom.UserBO;
+import lk.d24.hostel.dto.UserDTO;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -35,10 +42,26 @@ public class HomeFormController {
     public JFXButton btnLogOut;
     public AnchorPane apnMainPain;
     public Label lblUserType;
+    public AnchorPane txtDownPane;
+    public JFXTextField txtUserName;
+    public JFXPasswordField pwdPassword;
+    public FontAwesomeIconView icnEye;
+    public JFXTextField txtPassword;
+    public JFXButton btnUpdate;
+    public JFXTextField txtOldPassword;
+
+    private final UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.USER);
 
     public void initialize(){
         loadDateAndTime();
+        txtDownPane.setVisible(false);
         NameSideAnchorPane.setVisible(false);
+
+        txtPassword.textProperty().addListener((observable, oldValue, newValue) -> {
+            pwdPassword.setText(newValue);
+        });
+
+        txtUserName.setEditable(false);
     }
     public void iconSideOnAction(MouseEvent mouseEvent) {
         NameSideAnchorPane.setVisible(true);
@@ -55,6 +78,7 @@ public class HomeFormController {
             JFXButton button= (JFXButton) o;
 
             if(button.getId().equals("DashBoardImage")){
+                setUI("StudentRegistrationForm");
 
             }if(button.getId().equals("RoomButton")){
                 setUI("RoomForm");
@@ -94,9 +118,71 @@ public class HomeFormController {
     }
 
     String userName;
-    public void getAllData(String text) {
+    String pas;
+    public void getAllData(String text,String password) {
         userName=text;
         lblUserType.setText(userName);
+        txtUserName.setText(lblUserType.getText());
+
+        pas=password;
     }
 
+    public void eyeClickOnAction(MouseEvent mouseEvent) {
+        if (icnEye.getGlyphName().equals("EYE_SLASH")) { // must show password
+            icnEye.setGlyphName("EYE");
+
+            txtPassword.setText(pwdPassword.getText()); //copy PwdPassword data to  txtPW
+            pwdPassword.setVisible(false);  //PWField hidden
+            txtPassword.setVisible(true);   //txtField Shown
+
+        } else if (icnEye.getGlyphName().equals("EYE")) {  // must hide  password
+            icnEye.setGlyphName("EYE_SLASH");
+
+            pwdPassword.setText(txtPassword.getText());
+            txtPassword.setVisible(false); //txtField hide
+            pwdPassword.setVisible(true);  //PWField shown
+
+        }
+    }
+
+    public void btnUpdateOnAction(ActionEvent actionEvent) throws IOException {
+        for (UserDTO userDTO : userBO.getAllUser()) {
+
+            if(txtUserName.getText().equals(userDTO.getUserName()) && txtOldPassword.getText().equals(userDTO.getPassword())){
+
+                System.out.println(userDTO.getUserId()+" - "+userDTO.getName()+" - "+userDTO.getUserName() +" - "+userDTO.getPassword());
+
+                userBO.updateUser(new UserDTO(
+                        userDTO.getUserId(),
+                        userDTO.getName(),
+                        userDTO.getUserName(),
+                        pwdPassword.getText()
+                ));
+
+                pwdPassword.clear();
+                txtPassword.clear();
+
+            }
+        }
+    }
+
+    public void btnSearchOnAction(ActionEvent actionEvent) {
+        txtOldPassword.setText(pas);
+    }
+
+    public void upDownClickOnAction(MouseEvent mouseEvent) throws IOException {
+        txtDownPane.setVisible(true);
+
+        for (UserDTO userDTO : userBO.getAllUser()) {
+
+            if(txtUserName.getText().equals(userDTO.getUserName()) ){
+
+                txtOldPassword.setText(userDTO.getPassword());
+            }
+        }
+    }
+
+    public void downPaneCloseOnAction(MouseEvent mouseEvent) {
+        txtDownPane.setVisible(false);
+    }
 }

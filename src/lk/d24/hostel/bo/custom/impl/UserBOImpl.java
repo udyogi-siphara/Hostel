@@ -9,7 +9,6 @@ package lk.d24.hostel.bo.custom.impl;
 
 import lk.d24.hostel.bo.custom.UserBO;
 import lk.d24.hostel.dao.DAOFactory;
-import lk.d24.hostel.dao.custom.RoomDAO;
 import lk.d24.hostel.dao.custom.UserDAO;
 import lk.d24.hostel.dto.UserDTO;
 import lk.d24.hostel.entity.User;
@@ -39,5 +38,15 @@ public class UserBOImpl implements UserBO {
 
         return ud;
 
+    }
+
+    @Override
+    public boolean updateUser(UserDTO dto) throws IOException {
+        return userDAO.update(new User(
+                dto.getUserId(),
+                dto.getName(),
+                dto.getUserName(),
+                dto.getPassword()
+        ));
     }
 }
